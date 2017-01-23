@@ -3,7 +3,7 @@
 
 ## Introduction ##
 
-An inverted index is an index data structure storing a mapping from content, such as words or numbers, to its locations in a database file. Elasticsearch uses this structure, which is designed to allow very fast full-text searches. An inverted index consists of a list of all the unique words that appear in any document, and for each word, a list of the documents in which it appears.
+An inverted index is an index data structure storing a mapping from content, such as words or numbers, to its locations in a database file. Elasticsearch uses this structure, which is designed to allow very fast full-text searches. To create an inverted index, we first split the content field of each document into separate words (which we call terms, or tokens), create a sorted list of all the unique terms, and then list in which document each term appears.
 
 ### Features of this Application ###
 
