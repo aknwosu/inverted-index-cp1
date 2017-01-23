@@ -35,13 +35,13 @@ Run gulp to start the application.
 
 ### Technologies Used ###
 
-AngularJS
-Bootstrap
-EcmaScript 6 (JavaScript 2015)
-Node.js
-Angular.js
-Gulp (Task Runner)
-Karma (Generates Test Coverage Folder)
+* AngularJS
+* Bootstrap
+* EcmaScript 6 (JavaScript 2015)
+* Node.js
+* Angular.js
+* Gulp (Task Runner)
+* Karma (Generates Test Coverage Folder)
 
 Fork this repositry to your account.
 Clone your repositry: git clone git@github.com:your-username/inverted-index.git
