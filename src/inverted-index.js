@@ -31,6 +31,9 @@ class InvertedIndexClass {
       }
       this.parsedBooks = JSON.parse(jsonObj);
       const validityCheck = false;
+      if (!this.parsedBooks.length) {
+        throw new Error('Invalid Format');
+      }
       this.parsedBooks.forEach((entry) => {
         if (entry.title === undefined || entry.text === undefined) {
           throw new Error('Invalid Format');
@@ -39,7 +42,7 @@ class InvertedIndexClass {
       return [true, 'Success'];
     } catch (error) {
       if (error.message === 'Invalid Format') {
-        return (false, 'this Index takes books with Title and Text property only');
+        return [false, 'this Index takes books with Title and Text property only'];
       } else if (error.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
       }

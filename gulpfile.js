@@ -21,7 +21,6 @@ gulp.task('watch', () => {
     [
       'controllers/**/*.js',
       'src/**/*.js',
-      'src/**/*.css',
       'src/**/*.html',
       'gulpfile.js'
     ],

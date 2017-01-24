@@ -2,7 +2,7 @@
 const emptyFile = require('./test/emptyFile.json');
 const wrongFile = require('./test/wrongJsonObject.json');
 const validBook = require('./test/books.json');
-const wrongFormat = require('./test/wrongformat.txt');
+const trollTest = require('./test/trollTest.json')
 
 const invertedIndexTest = new InvertedIndexClass();
 
@@ -18,9 +18,15 @@ describe('Read book data', () => {
   });
   it('parses received files into JSON objects', () => {
     expect(typeof (invertedIndexTest.validFiles(wrongFile))).toBe(typeof {});
-  }); 
+  });
   it('reads a JSON file and asserts that it valid', () => {
      expect(invertedIndexTest.validFiles(JSON.stringify(validBook))[1]).toBe('Success');
+  });
+  it('reads a JSON file and asserts that it valid', () => {
+     expect(invertedIndexTest.validFiles(JSON.stringify(trollTest))[1]).toBe('this Index takes books with Title and Text property only');
+  });
+  it('reads a JSON file and asserts that it valid', () => {
+     expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile))[1]).toBe('this Index takes books with Title and Text property only');
   });
 });
 
