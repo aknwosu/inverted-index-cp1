@@ -1,3 +1,4 @@
+[![Coverage Status](https://coveralls.io/repos/github/andela-anwosu/inverted-index-cp1/badge.svg?branch=develop)](https://coveralls.io/github/andela-anwosu/inverted-index-cp1?branch=develop)
 # Inverted-Index #
 
 
