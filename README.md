@@ -8,14 +8,14 @@ An inverted index is an index data structure storing a mapping from content, suc
 ### Features of this Application ###
 
   * Supports Upload of JSON file created following the format displayed below:
-[
+` [
     {"title": "Required",
     "text":"Do include some content on the subject matter."
     },
     {"title": "eg. Checkpoint 1",
     "text": "This Checkpoint is called inverted Index."
     }
-]
+] `
   *  Creates an Index for any selected JSON file.
 
   *  Searching of a specific JSON file or all indexed JSON files.
