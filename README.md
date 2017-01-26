@@ -39,9 +39,8 @@ Run gulp to start the application.
 
 * AngularJS
 * Bootstrap
-* EcmaScript 6 (JavaScript 2015)
-* Node.js
-* Angular.js
+* EcmaScript 6 (ES2015)
+* NodeJS
 * Gulp (Task Runner)
 * Karma (Generates Test Coverage Folder)
 

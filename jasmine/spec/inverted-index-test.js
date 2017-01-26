@@ -1,4 +1,4 @@
-
+/* eslint no-undef:0*/
 const emptyFile = require('./test/emptyFile.json');
 const wrongFile = require('./test/wrongJsonObject.json');
 const validBook = require('./test/books.json');

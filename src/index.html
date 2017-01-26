@@ -59,10 +59,7 @@
                 <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
                 </select>
 
-                <!--<select></select>-->
-                <!--<select name="" id="" ng-repeat="(k,v) in allValidatedBooks">
-                    <option value="{{k}}"> {{ k }} </option>
-                </select>-->
+               
                 <div>{{ uploaderError }}</div>
                 <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
                 <br><br>
