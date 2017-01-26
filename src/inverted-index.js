@@ -11,7 +11,6 @@ class InvertedIndexClass {
     this.index = {};
     this.books = {};
     this.parsedBooks = {};
-    this.allBooks = {};
   }
   /**
    * returns created index
@@ -32,9 +31,6 @@ class InvertedIndexClass {
       }
       this.parsedBooks = JSON.parse(jsonObj);
       const validityCheck = false;
-      if (!this.parsedBooks.length) {
-        throw new Error('Invalid Format');
-      }
       this.parsedBooks.forEach((entry) => {
         if (entry.title === undefined || entry.text === undefined) {
           throw new Error('Invalid Format');
@@ -43,7 +39,7 @@ class InvertedIndexClass {
       return [true, 'Success'];
     } catch (error) {
       if (error.message === 'Invalid Format') {
-        return [false, 'this Index takes books with Title and Text property only'];
+        return (false, 'this Index takes books with Title and Text property only');
       } else if (error.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
       }
@@ -51,43 +47,38 @@ class InvertedIndexClass {
   }
 /**
    * checks if the passed in JSON object is valid
-   * @param{object}  filename;
-   * @param{string} books
+   * @param{object}books;
    * @returns{object};
    */
-  createIndex(filename, books) {
-    this.index[filename] = {};
+  createIndex(books) {
     this.books = (books);
 
     for (let i = 0; i < books.length; i += 1) {
       const textIndex = books[i].text.toLowerCase().match(/\w+/g);
       for (let j = 0; j < textIndex.length; j += 1) {
-        if (this.index[filename][textIndex[j]] === undefined) {
-          this.index[filename][textIndex[j]] = {};
-          this.index[filename][textIndex[j]][i] = true;
+        if (this.index[textIndex[j]] === undefined) {
+          this.index[textIndex[j]] = {};
+          this.index[textIndex[j]][i] = true;
         } else {
-          this.index[filename][textIndex[j]][i] = true;
+          this.index[textIndex[j]][i] = true;
         }
       }
     }
-    // this.allBooks[books] = this.index;
     return this.index;
   }
 /**
- * @param{string} filename
-   @param {array} queries
+   @param {String} queries
   * @return {Object} An Object Containing the Various words and their Locations.
 */
-  searchIndex(filename, queries) {
+  searchIndex(queries) {
     const searchResult = {};
-    searchResult[filename] = {};
     if (typeof (queries) === typeof []) {
       queries = queries.join();
     }
     queries = queries.toLowerCase().match(/\w+/g);
     for (let word = 0; word < queries.length; word += 1) {
-      if (this.index[filename][queries[word]]) {
-        searchResult[filename][queries[word]] = this.index[filename][queries[word]];
+      if (this.index[queries[word]]) {
+        searchResult[queries[word]] = this.index[queries[word]];
       }
     }
     return searchResult;
