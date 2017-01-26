@@ -43,33 +43,27 @@
         </nav>
     </header>
     </div>
-
-
-    <div>
+    <div >
         <div class="row">
             <form class="form-horizontal container">
-                <div class="form-group">
-                    <label class="col-md-10">
-                        <input type="file" accept=".json" id="myJsonFile" class="control-label col-xs-4" multiple>
+                <label class="col-md-10">
+                <div  class="form-group">
+                    <input type="file" accept=".json" id="myJsonFile" class="control-label col-xs-4" multiple>
                     </label>
-                </div>
-                <input type="submit" class="btn btn-success" value="Upload File" ng-click="uploader()">
-                <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
+                    </div>
+                    <input type="submit" class="btn btn-success" value="Upload File" ng-click="uploader()">
+                    <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
+                    <br><br>
+                    </form>
+                    <div>{{ uploaderError }}</div>
+                
                 <br><br>
-                <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
-                </select>
-
-               
-                <div>{{ uploaderError }}</div>
-                <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
-                <br><br>
-                <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
-                <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
+                <input type="text" class="form-control" ng-model="searchTerms" id="searchQ"><br><br>
+                <input type="submit" ng-click="searchJson()" value="Search">
                 <div>{{ showError }}</div>
-            </form>
-            
+                <br><br>
         </div>
-        <br><br>
+        
         <div class="panel panel-title pull-right col-xs-4">
             <ul class="panel-body">
                 To create an Index:
@@ -88,7 +82,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat='(key, value) in indexOfWords[indexToBeCreated]'>
+                <tr ng-repeat='(key, value) in indexOfWords'>
                     <td>{{key}}</td>
                     <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td ng-repeat-end ng-if="!value[item]">
@@ -106,7 +100,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat='(key, value) in searchResult[indexToBeCreated]'>
+                <tr ng-repeat='(key, value) in searchResult'>
                     <td>{{key}}</td>
                     <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td ng-repeat-end ng-if="!value[item]">
