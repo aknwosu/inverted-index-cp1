@@ -11,11 +11,11 @@ An inverted index is an index data structure storing a mapping from content, suc
 
   * Supports Upload of JSON file created following the format:
 ` [
-    {"title": "Required",
-    "text":"Do include some content on the subject matter."
+    {"title": "This Is A Book Title",
+    "text": "This is the book text."
     },
-    {"title": "eg. Checkpoint 1",
-    "text": "This Checkpoint is called inverted Index."
+    {"title": "This Is Another Book Title",
+    "text": "This is another book text."
     }
 ] `
   *  Creates an Index for any selected JSON file.
@@ -24,7 +24,7 @@ An inverted index is an index data structure storing a mapping from content, suc
 
 ### Usage ###
 
-This App can be accessed on Heroku at: 
+This App can be accessed on Heroku at: https://inverted-index-andela-anwosu.herokuapp.com/
 
 Alternatively, You may clone the repository and run the app locally to use.
 
@@ -45,9 +45,8 @@ Run gulp to start the application.
 * Gulp (Task Runner)
 * Karma (Generates Test Coverage Folder)
 
-Fork this repositry to your account.
-Clone your repositry: git clone git@github.com:your-username/inverted-index.git
+Fork this repository to your account.
+Clone your repository: git clone git@github.com:your-username/inverted-index.git
 Create your feature branch: git checkout -b new-feature
 Commit your changes: git commit -m "did something"
 Push to the remote branch: git push origin new-feature
-Open a pull request.
