@@ -43,6 +43,8 @@
         </nav>
     </header>
     </div>
+
+
     <div>
         <div class="row">
             <form class="form-horizontal container">
@@ -54,10 +56,18 @@
                 <input type="submit" class="btn btn-success" value="Upload File" ng-click="uploader()">
                 <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
                 <br><br>
+                <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
+                </select>
+
+                <!--<select></select>-->
+                <!--<select name="" id="" ng-repeat="(k,v) in allValidatedBooks">
+                    <option value="{{k}}"> {{ k }} </option>
+                </select>-->
                 <div>{{ uploaderError }}</div>
+                <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
                 <br><br>
                 <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
-                <input type="submit" ng-click="searchJson()" value="Search">
+                <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
                 <div>{{ showError }}</div>
             </form>
             
@@ -81,7 +91,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat='(key, value) in indexOfWords'>
+                <tr ng-repeat='(key, value) in indexOfWords[indexToBeCreated]'>
                     <td>{{key}}</td>
                     <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td ng-repeat-end ng-if="!value[item]">
@@ -99,7 +109,7 @@
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat='(key, value) in searchResult'>
+                <tr ng-repeat='(key, value) in searchResult[indexToBeCreated]'>
                     <td>{{key}}</td>
                     <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td ng-repeat-end ng-if="!value[item]">
