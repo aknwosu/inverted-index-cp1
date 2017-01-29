@@ -21,9 +21,12 @@ class InvertedIndexClass {
     return this.index;
   }
   /**
+   * Valid files
+   * 
    * checks if the passed in JSON object is valid
-   * @param{object}jsonObj;
-   * @returns{array};
+   * 
+   * @param {object} jsonObj accepts a json file and checks if it is valid
+   * @returns {array} returns an array, the first value being true or false and the second valur being an error message
    */
   validFiles(jsonObj) {
     try {
@@ -50,14 +53,14 @@ class InvertedIndexClass {
     }
   }
 /**
-   * checks if the passed in JSON object is valid
-   * @param{object}  filename;
-   * @param{string} books
+   *
+   * @param{string}  filename accepts a string name for a file;
+   * @param{object} books is a json object for which an index is to be created
    * @returns{object};
    */
   createIndex(filename, books) {
     this.index[filename] = {};
-    this.books = (books);
+    this.books = books;
 
     for (let i = 0; i < books.length; i += 1) {
       const textIndex = books[i].text.toLowerCase().match(/\w+/g);
@@ -78,18 +81,26 @@ class InvertedIndexClass {
    @param {array} queries
   * @return {Object} An Object Containing the Various words and their Locations.
 */
-  searchIndex(filename, queries) {
+  searchIndex(queries, filename) {
+    let filesToSearch = [];
     const searchResult = {};
-    searchResult[filename] = {};
-    if (typeof (queries) === typeof []) {
-      queries = queries.join();
+    if (!filename) {
+      filesToSearch = filesToSearch.concat(Object.keys(this.index));
+    } else {
+      filesToSearch.push(filename);
     }
-    queries = queries.toLowerCase().match(/\w+/g);
-    for (let word = 0; word < queries.length; word += 1) {
-      if (this.index[filename][queries[word]]) {
-        searchResult[filename][queries[word]] = this.index[filename][queries[word]];
+    filesToSearch.forEach((searchKey) => {
+      searchResult[searchKey] = {};
+      if (typeof (queries) === typeof []) {
+        queries = queries.join();
       }
-    }
+      queries = queries.toLowerCase().match(/\w+/g);
+      for (let word = 0; word < queries.length; word += 1) {
+        if (this.index[searchKey][queries[word]]) {
+          searchResult[searchKey][queries[word]] = this.index[searchKey][queries[word]];
+        }
+      }
+    });
     return searchResult;
   }
 }

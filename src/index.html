@@ -7,16 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-    <!-- Bootstrap -->
-    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <title>The Inverted Index</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="./src/inverted-index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
@@ -42,78 +33,94 @@
             </div>
         </nav>
     </header>
-    </div>
-
-
     <div>
         <div class="row">
             <form class="form-horizontal container">
                 <div class="form-group">
-                    <label class="col-md-10">
+                    <label class="col-md-8">
                         <input type="file" accept=".json" id="myJsonFile" class="control-label col-xs-4" multiple>
+                            <input type="submit" class="btn btn-success " value="Upload File" ng-click="uploader()">
+
                     </label>
                 </div>
-                <input type="submit" class="btn btn-success" value="Upload File" ng-click="uploader()">
-                <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
-                <br><br>
-                <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
-                </select>
-
-               
                 <div>{{ uploaderError }}</div>
-                <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
-                <br><br>
-                <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
-                <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
-                <div>{{ showError }}</div>
+                <br>
+                <div class="col-xs-6 container">
+                    <select class="col-xs-2" ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
+                    <option value="undefined"></option>
+                </select>
+                    <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
+                    <br><br>
+                    <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
+                    <br><br>
+                    <div>
+                        <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
+                        <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
+                        <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeSearched">
+                    <option value=""></option>
+
+                </select>
+                        <div>{{ showError }}</div>
             </form>
-            
+            </div>
+    
+    </div>
+            </div>
         </div>
-        <br><br>
-        <div class="panel panel-title pull-right col-xs-4">
-            <ul class="panel-body">
-                To create an Index:
-                <li>Choose a valid JSON object and clock "upload"</li>
-                <li>Click on "Create Index" to create an index of the selected file</li>
-                <li>Type in search terms and click on search</li>
-            </ul>
+    </div>
+    </div>
+    </div>
+    <br><br>
+    <div class="panel panel-title pull-right col-xs-3 col-xs-6  sidebar-offcanvas">
+        <ul class="panel-body">
+            To create an Index:
+            <li>Choose a valid JSON object and clock "upload"</li>
+            <li>Click on "Create Index" to create an index of the selected file</li>
+            <li>Type in search terms and click on search</li>
+        </ul>
         </div>
-        <table class='table' ng-show="showIndex">
+  
+    <table class='table' ng-show="showIndex">
+        <thead>
+            <th>
+                Text
+            </th>
+            <th ng-repeat='title in titles[indexToBeCreated] track by $index'>
+                {{title}}
+            </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat='(key, value) in indexOfWords[indexToBeCreated]'>
+                <td>{{key}}</td>
+                <td ng-repeat-start="item in arrayLength[indexToBeCreated]" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
+                <td ng-repeat-end ng-if="!value[item]">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-show="showSearch" ng-repeat="(sfileName, sfileData) in searchResult">
+        <p>
+            {{sfileName}}
+        </p>
+        <table class='table'>
             <thead>
                 <th>
                     Text
                 </th>
-                <th ng-repeat='title in titles track by $index'>
+                <th ng-repeat='title in titles[sfileName] track by $index'>
                     {{title}}
                 </th>
             </thead>
             <tbody>
-                <tr ng-repeat='(key, value) in indexOfWords[indexToBeCreated]'>
+                <tr ng-repeat='(key, value) in sfileData'>
                     <td>{{key}}</td>
-                    <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
+                    <td ng-repeat-start="item in arrayLength[sfileName]" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
                     <td ng-repeat-end ng-if="!value[item]">
                     </td>
                 </tr>
             </tbody>
         </table>
-        <table class='table' ng-show="showSearch">
-            <thead>
-                <th>
-                    Text
-                </th>
-                <th ng-repeat='title in titles track by $index'>
-                    {{title}}
-                </th>
-            </thead>
-            <tbody>
-                <tr ng-repeat='(key, value) in searchResult[indexToBeCreated]'>
-                    <td>{{key}}</td>
-                    <td ng-repeat-start="item in arrayLength" ng-if="value[item]"><i class="fa fa-check" aria-hidden="true"></i></td>
-                    <td ng-repeat-end ng-if="!value[item]">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    </div>
 </body>
 
 </html>
