@@ -79,6 +79,7 @@ class InvertedIndexClass {
         }
       }
     }
+        // this.allBooks[books] = this.index;
     return this.index;
   }
     /**
@@ -86,11 +87,11 @@ class InvertedIndexClass {
      * 
      * Searches through the indexes for the specified search terms
      * 
+     * @param {string} queries
      * @param{string} filename
-     *  @param {string} queries
      * @return {Object} An Object Containing the Various words and their Locations.
      */
-  searchIndex(filename, ...queries) {
+  searchIndex(queries, filename) {
     let filesToSearch = [];
     const searchResult = {};
     if (!filename) {

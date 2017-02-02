@@ -47,17 +47,17 @@ describe('Populate Index', () => {
 
 describe('Search index', () => {
   it('returns the indices of the correct objects that contain the words in the search query', () => {
-    expect(invertedIndexTest.searchIndex('booky.json', 'Alice Bicycle')).toEqual({ 'booky.json': { alice: { 0: true } } });
+    expect(invertedIndexTest.searchIndex('Alice Bicycle', 'booky.json')).toEqual({ 'booky.json': { alice: { 0: true } } });
   });
   it('returns the indices of the correct objects that contain the words in the search query', () => {
-    expect(invertedIndexTest.searchIndex('booky.json', 'AlIce aLliancE')).toEqual({ 'booky.json': { alice: { 0: true }, alliance: { 1: true } } });
+    expect(invertedIndexTest.searchIndex('AlIce aLliancE', 'booky.json')).toEqual({ 'booky.json': { alice: { 0: true }, alliance: { 1: true } } });
   });
   it('Should accept an array as a search parameter returns the indices of the correct objects that contain the words in the search query', () => {
-    expect(invertedIndexTest.searchIndex('booky.json', ['Alice', 'alliance'])).toEqual({ 'booky.json': { alice: { 0: true }, alliance: { 1: true } } });
+    expect(invertedIndexTest.searchIndex(['Alice', 'alliance'], 'booky.json')).toEqual({ 'booky.json': { alice: { 0: true }, alliance: { 1: true } } });
   });
-  /* it('Should accept an array as a search parameter returns the indices of the correct objects that contain the words in the search query', () => {
+  it('Should accept an array as a search parameter returns the indices of the correct objects that contain the words in the search query', () => {
     expect(invertedIndexTest.searchIndex(['Alice', 'alliance'])).toEqual({ 'booky.json': { alice: { 0: true }, alliance: { 1: true } }, 'books.json': { alice: { 0: true }, alliance: { 1: true } } });
-  }); */
+  });
 });
 
 },{"./test/books.json":2,"./test/emptyFile.json":3,"./test/trollTest.json":4,"./test/wrongJsonObject.json":5}],2:[function(require,module,exports){
