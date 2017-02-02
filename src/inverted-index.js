@@ -13,7 +13,6 @@ class InvertedIndexClass {
     this.index = {};
     this.books = {};
     this.parsedBooks = {};
-    this.allBooks = {};
   }
     /**
      * returns created index
@@ -79,7 +78,6 @@ class InvertedIndexClass {
         }
       }
     }
-        // this.allBooks[books] = this.index;
     return this.index;
   }
     /**

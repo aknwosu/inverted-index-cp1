@@ -18,15 +18,15 @@ describe('Read book data', () => {
     expect(invertedIndexTest.validFiles(wrongFile.title)[1]).toBe('Invalid JSON file');
   });
   it('parses received files into JSON objects', () => {
-    expect(typeof (invertedIndexTest.validFiles(wrongFile))).toBe(typeof {});
+    expect(typeof (invertedIndexTest.validFiles(validBook))).toBe(typeof {});
   });
   it('reads a JSON file and asserts that it valid', () => {
     expect(invertedIndexTest.validFiles(JSON.stringify(validBook))[1]).toBe('Success');
   });
-  it('reads a JSON file and asserts that it valid', () => {
+  it('reads a file and asserts that it invalid', () => {
     expect(invertedIndexTest.validFiles(JSON.stringify(trollTest))[1]).toBe('this Index takes books with Title and Text property only');
   });
-  it('reads a JSON file and asserts that it valid', () => {
+  it('reads a JSON file and asserts that it invalid', () => {
     expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile))[1]).toBe('this Index takes books with Title and Text property only');
   });
 });
