@@ -1,33 +1,36 @@
 /* eslint-disable no-unused-vars*/
+/* eslint-disable no-trailing-spaces*/
 /**
- * Class for Complete Inverted Index.
+ * Class for Inverted Index.
+ * 
  * @class
  */
 class InvertedIndexClass {
-  /**
-   * Class Instantiation.
-   */
+    /**
+     * Class Instantiation.
+     */
   constructor() {
     this.index = {};
     this.books = {};
     this.parsedBooks = {};
     this.allBooks = {};
   }
-  /**
-   * returns created index
-   * @returns{object};
-   */
+    /**
+     * returns created index
+     * @returns{object};
+     */
   getIndex() {
     return this.index;
   }
-  /**
-   * Valid files
-   * 
-   * checks if the passed in JSON object is valid
-   * 
-   * @param {object} jsonObj accepts a json file and checks if it is valid
-   * @returns {array} returns an array, the first value being true or false and the second valur being an error message
-   */
+    /**
+     * Valid Files
+     *
+     * Checks if the passed in JSON object is valid
+     *
+     * @param {object} jsonObj accepts a json file and checks if it is valid
+     * @returns {array} returns an array, the first value being true or 
+     * false and the second value being an error message
+     */
   validFiles(jsonObj) {
     try {
       if (jsonObj === ' ' || jsonObj === '' || jsonObj === '""') {
@@ -52,12 +55,15 @@ class InvertedIndexClass {
       }
     }
   }
-/**
-   *
-   * @param{string}  filename accepts a string name for a file;
-   * @param{object} books is a json object for which an index is to be created
-   * @returns{object};
-   */
+    /**
+     * create Index
+     * 
+     * creates an index of words
+     * 
+     * @param{string}  filename accepts a string name for a file;
+     * @param{object} books is a json object for which an index is to be created
+     * @returns{object};
+     */
   createIndex(filename, books) {
     this.index[filename] = {};
     this.books = books;
@@ -73,15 +79,19 @@ class InvertedIndexClass {
         }
       }
     }
-    // this.allBooks[books] = this.index;
+        // this.allBooks[books] = this.index;
     return this.index;
   }
-/**
- * @param{string} filename
-   @param {array} queries
-  * @return {Object} An Object Containing the Various words and their Locations.
-*/
-  searchIndex(queries, filename) {
+    /**
+     * Search Index
+     * 
+     * Searches through the indexes for the specified search terms
+     * 
+     * @param {string} queries
+     * @param{string} filename
+     * @return {Object} An Object Containing the Various words and their Locations.
+     */
+  searchIndex(filename, ...queries) {
     let filesToSearch = [];
     const searchResult = {};
     if (!filename) {

@@ -6,8 +6,8 @@
     <title>Inverted Index</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel='stylesheet' type="text/css" href="./src/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Inverted Index</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="./src/inverted-index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
@@ -34,52 +34,52 @@
         </nav>
     </header>
     <div>
-        <div class="row">
-            <form class="form-horizontal container">
-                <div class="form-group">
-                    <label class="col-md-8">
-                        <input type="file" accept=".json" id="myJsonFile" class="control-label col-xs-4" multiple>
-                            <input type="submit" class="btn btn-success " value="Upload File" ng-click="uploader()">
-
-                    </label>
+        <div class="row col-md-12">
+            <div class="column col-md-8 panel panel-default">
+                <div class="panel-heading">Create Index
                 </div>
-                <div>{{ uploaderError }}</div>
+                <div class="panel-body">
+                    <form class="form-inline">
+                        <span><div class="form-group">
+                            <input type="file" accept=".json" id="myJsonFile" class="control-label col-md-6" multiple>
+                            <input type="submit" class="btn btn-success " value="Upload File" ng-click="uploader()">
+                        </div></span>
+
+                        <div>{{ uploaderError }}</div>
+                </div>
                 <br>
-                <div class="col-xs-6 container">
+                <div class="panel-body">
                     <select class="col-xs-2" ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeCreated">
                     <option value="undefined"></option>
                 </select>
                     <input type="submit" value="Create Index" class="btn btn-success" ng-click="submitIndex()">
-                    <br><br>
+                    <br>
                     <p ng-repeat="(key, value) in allValidatedBooks">{{key}}</p>
-                    <br><br>
-                    <div>
-                        <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
-                        <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
-                        <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeSearched">
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Enter Your Search Terms Below
+                    </div>
+                    <input type="text" class="input-group-lg col-xs-4" ng-model="searchTerms" id="searchQ"><br><br>
+                    <input type="submit" class="btn btn-success" ng-click="searchJson()" value="Search">
+                    <select ng-options="x as x for (x,y) in allValidatedBooks" ng-model="indexToBeSearched">
                     <option value=""></option>
 
                 </select>
-                        <div>{{ showError }}</div>
-            </form>
+                    <div>{{ showError }}</div>
+                    </form>
+                </div>
             </div>
-    
-    </div>
+            <div class="panel panel-title pull-right col-md-4  sidebar-offcanvas">
+                <ul class="panel-body">
+                    To create an Index:
+                    <li>Choose a valid JSON file and click "Upload File"</li>
+                    <li>In the scroll box, select the file you want to create an index for and click "Create Index</li>
+                    <li>Type in search terms and click on search</li>
+                </ul>
             </div>
         </div>
-    </div>
-    </div>
     </div>
     <br><br>
-    <div class="panel panel-title pull-right col-xs-3 col-xs-6  sidebar-offcanvas">
-        <ul class="panel-body">
-            To create an Index:
-            <li>Choose a valid JSON object and clock "upload"</li>
-            <li>Click on "Create Index" to create an index of the selected file</li>
-            <li>Type in search terms and click on search</li>
-        </ul>
-        </div>
-  
     <table class='table' ng-show="showIndex">
         <thead>
             <th>

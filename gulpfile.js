@@ -22,6 +22,7 @@ gulp.task('watch', () => {
       'controllers/**/*.js',
       'src/**/*.js',
       'src/**/*.html',
+      'src/**/*.css',
       'gulpfile.js'
     ],
     appSync.reload);
