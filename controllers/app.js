@@ -71,7 +71,7 @@ app.controller('InvertedIndexController', ($scope) => {
             if ($scope.indexToBeSearched === undefined) {
                 $scope.searchResult = $scope.newIndex.searchIndex($scope.searchTerms);
             } else {
-                $scope.searchResult = $scope.newIndex.searchIndex($scope.indexToBeSearched, $scope.searchTerms);
+                $scope.searchResult = $scope.newIndex.searchIndex($scope.searchTerms, $scope.indexToBeSearched);
             }
             $scope.showIndex = false;
             $scope.showSearch = true;
