@@ -106,12 +106,10 @@ class InvertedIndexClass {
   validFiles(jsonObj) {
     try {
       if (jsonObj.length === 0) {
-        return [false, 'Error, empty file'];
+        throw new Error('Error, empty file');
       }
       this.parsedBooks = JSON.parse(jsonObj);
       const validityCheck = false;
-
-
       this.parsedBooks.forEach((entry) => {
         if (entry.title === undefined || entry.text === undefined) {
           throw new Error('Invalid Format');
@@ -125,6 +123,8 @@ class InvertedIndexClass {
         ];
       } else if (error.name === 'SyntaxError') {
         return [false, 'Invalid JSON file'];
+      } else if (error.message === 'Error, empty file') {
+        return [false, 'Error, empty file'];
       }
     }
   }
