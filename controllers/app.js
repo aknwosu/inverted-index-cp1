@@ -39,9 +39,10 @@ app.controller('InvertedIndexController', ($scope) => {
             $scope.validationResult = $scope.newIndex.validFiles($scope.readybooks);
 
             $scope.$apply(() => {
-                if ($scope.validationResult[0]) {
+                if ($scope.validationResult[0] === true) {
                     $scope.allValidatedBooks[$scope.fileDocName] = $scope.readybooks;
                 }
+              
             });
             alert($scope.validationResult[1]); // eslint-disable-line no-alert
         };

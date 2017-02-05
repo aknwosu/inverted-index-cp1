@@ -119,10 +119,7 @@ class InvertedIndexClass {
     } catch (error) {
       if (error.message === 'Invalid Format') {
         return [false,
-          'this Index takes books with Title and Text property only'
-        ];
-      } else if (error.name === 'SyntaxError') {
-        return [false, 'Invalid JSON file'];
+          'this Index takes books with Title and Text property only'];
       } else if (error.message === 'Error, empty file') {
         return [false, 'Error, empty file'];
       }

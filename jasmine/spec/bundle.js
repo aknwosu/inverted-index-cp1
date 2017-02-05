@@ -15,8 +15,8 @@ describe('Read book data', () => {
 
   it('reads a JSON file and asserts that it has the appropriate properties',
   () => {
-    expect(invertedIndexTest.validFiles((wrongFile))[1])
-    .toBe('Invalid JSON file');
+    expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile))[1])
+    .toBe('this Index takes books with Title and Text property only');
   });
 
   it('reads a JSON file and asserts that it is valid',
@@ -92,7 +92,7 @@ module.exports=[
 ]
 
 },{}],3:[function(require,module,exports){
-module.exports=""
+module.exports=''
 },{}],4:[function(require,module,exports){
 module.exports=[{"topic":"birds", "quotes":
 
