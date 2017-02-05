@@ -18,10 +18,16 @@ describe('Read book data', () => {
     .toBe('Invalid JSON file');
   });
 
-  it('reads a JSON file and asserts that it valid',
+  it('reads a JSON file and asserts that it is valid',
   () => {
     expect(invertedIndexTest.validFiles(JSON.stringify(validBook))[1])
     .toBe('Success');
+  });
+
+  it('reads a JSON file and asserts that it has the correct properties',
+  () => {
+    expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile))[1])
+    .toBe('this Index takes books with Title and Text property only');
   });
 });
 
