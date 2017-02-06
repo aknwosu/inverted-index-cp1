@@ -1,6 +1,5 @@
 * Fix the gulp task for css
 * Fix trailing spaces
-* Fix tests line 16, 17  it('reads a JSON file and asserts that it has text and title properties', () => {
 * Fix redundant tests
 * Adhere to Airbnb specs 80 characters
 * Test cases should be more specific
