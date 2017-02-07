@@ -27,12 +27,9 @@ class InvertedIndexClass {
   createIndex(filename, books) {
     this.index[filename] = {};
     this.books = (books);
-    let bookIndex;
-    books.forEach((singleBook, inex) => {
-      // console.log(singleBook);
+    books.forEach((singleBook, bookIndex) => {
       singleBook = `${singleBook.title} ${singleBook.text}`;
       singleBook = singleBook.toLowerCase().match(/[\w]+/g);
-      bookIndex = inex;
       singleBook.forEach((term) => {
         if (this.index[filename][term] === undefined) {
           this.index[filename][term] = {};
@@ -42,10 +39,11 @@ class InvertedIndexClass {
         }
       });
     });
-    return this.index;
   }
 
   /**
+   * Get Index
+   * 
    * returns created index
    * 
    * @returns{object};
@@ -83,12 +81,11 @@ class InvertedIndexClass {
         terms = terms.join();
       }
       terms = terms.toLowerCase().match(/[\w']+/g);
-      for (let word = 0; word < terms.length; word += 1) {
-        if (this.index[searchKey][terms[word]]) {
-          searchResult[searchKey][terms[word]] 
-          = this.index[searchKey][terms[word]];
-        }
-      }
+      terms.forEach((word) => {
+        if (this.index[searchKey][word]) {
+          searchResult[searchKey][word] = this.index[searchKey][word];
+        } 
+      });
     });
     return searchResult;
   }
@@ -115,15 +112,30 @@ class InvertedIndexClass {
           throw new Error('Invalid Format');
         }
       });
-      return [true, 'Success'];
+      return {
+        status: true,
+        statusMessage: 
+          'Success'
+      };
     } catch (error) {
       if (error.message === 'Invalid Format') {
-        return [false,
-          'this Index takes books with Title and Text property only'];
+        return {
+          status: false,
+          statusMessage: 
+          'this Index takes books with Title and Text property only'
+        };
       } else if (error.message === 'Error, empty file') {
-        return [false, 'Error, empty file'];
+        return {
+          status: false,
+          statusMessage: 
+          'Error, empty file'
+        };
       } 
-      return [false, 'Invalid JSON file'];
+      return {
+        status: false,
+        statusMessage: 
+          'Invalid JSON file'
+      };
     }
   }
 }
