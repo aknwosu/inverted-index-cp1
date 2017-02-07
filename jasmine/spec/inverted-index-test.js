@@ -15,13 +15,14 @@ describe('Read book data', () => {
 
   it('reads a JSON file and asserts that it is valid',
   () => {
-    expect(invertedIndexTest.validFiles(JSON.stringify(validBook)).statusMessage)
-    .toBe('Success');
+    expect(invertedIndexTest.validFiles(JSON.stringify(validBook))
+    .statusMessage).toBe('Success');
   });
 
   it('reads a JSON file and asserts that it has the correct properties',
   () => {
-    expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile)).statusMessage)
+    expect(invertedIndexTest.validFiles(JSON.stringify(wrongFile))
+    .statusMessage)
     .toBe('this Index takes books with Title and Text property only');
   });
 });
@@ -31,6 +32,11 @@ describe('Populate Index', () => {
   it('verifies that an Index is created once the JSON file has been read',
   () => {
     expect(invertedIndexTest.getIndex()).toBeDefined();
+  });
+
+  it('should accept an optional parameter in the get index',
+  () => {
+    expect(invertedIndexTest.getIndex('books.json')).toBeDefined();
   });
 
   it('should map the string keys to the correct objects in the JSON array',

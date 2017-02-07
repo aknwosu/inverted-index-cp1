@@ -46,9 +46,13 @@ class InvertedIndexClass {
    * 
    * returns created index
    * 
+   * @param{string} filename
    * @returns{object};
    */
-  getIndex() {
+  getIndex(filename) {
+    if (filename) {
+      return this.index[filename];
+    } 
     return this.index;
   }
 
