@@ -27,9 +27,8 @@ app.controller('InvertedIndexController', ($scope) => {
   $scope.uploader = () => {
     const fileDoc = document.getElementById('myJsonFile').files[0];
     $scope.fileDocName = fileDoc.name;
-    if (typeof (fileDoc !== 'Blob')) {
-      $scope.uploaderError = 'select and upload a json object and then create index'; // eslint-no constant condition
-    }
+    $scope.uploaderError
+    = 'select and upload a json file and create index';
     const reader = new FileReader();
     reader.readAsText(fileDoc);
     reader.onload = (event) => {
@@ -39,9 +38,11 @@ app.controller('InvertedIndexController', ($scope) => {
       $scope.$apply(() => {
         if ($scope.validationResult.status === true) {
           $scope.allValidatedBooks[$scope.fileDocName] = $scope.readybooks;
-          $scope.uploaderError = 'success! Please create an index of the uploaded book below';
+          $scope.uploaderError
+          = 'success! Please create an index of the uploaded book below';
         } else {
-          alert($scope.validationResult.statusMessage); // eslint-disable-line no-alert
+          $scope.uploaderError
+          = ($scope.validationResult.statusMessage);
         }
       });
     };
@@ -49,10 +50,12 @@ app.controller('InvertedIndexController', ($scope) => {
   $scope.submitIndex = () => {
     if ($scope.validationResult.status === true) {
       $scope.newIndex.createIndex($scope.indexToBeCreated,
-                JSON.parse($scope.allValidatedBooks[$scope.indexToBeCreated]));
+        JSON.parse($scope.allValidatedBooks[$scope.indexToBeCreated]));
       $scope.indexOfWords = $scope.newIndex.getIndex();
-      $scope.titles[$scope.indexToBeCreated] = titlesList($scope.newIndex.books.length);
-      $scope.arrayLength[$scope.indexToBeCreated] = indexCount($scope.newIndex.books.length);
+      $scope.titles[$scope.indexToBeCreated]
+      = titlesList($scope.newIndex.books.length);
+      $scope.arrayLength[$scope.indexToBeCreated]
+      = indexCount($scope.newIndex.books.length);
       $scope.showIndex = true;
       $scope.showSearch = false;
     }
@@ -62,19 +65,18 @@ app.controller('InvertedIndexController', ($scope) => {
 
 
   $scope.searchJson = () => {
-        // let file = $scope.indexToBeSearched || null,
     if ($scope.searchTerms === undefined) {
       $scope.showError = 'Please enter valid search terms';
     } else if ($scope.indexOfWords === undefined) {
       $scope.showError = 'Please upload a Json object first before searching';
+    } else if ($scope.indexToBeSearched === undefined) {
+      $scope.searchResult = $scope.newIndex.searchIndex($scope.searchTerms);
     } else {
-      if ($scope.indexToBeSearched === undefined) {
-        $scope.searchResult = $scope.newIndex.searchIndex($scope.searchTerms);
-      } else {
-        $scope.searchResult = $scope.newIndex.searchIndex($scope.indexToBeSearched, $scope.searchTerms);
-      }
-      $scope.showIndex = false;
-      $scope.showSearch = true;
+      $scope.searchResult
+      = $scope.newIndex.searchIndex($scope.indexToBeSearched,
+      $scope.searchTerms);
     }
+    $scope.showIndex = false;
+    $scope.showSearch = true;
   };
 });

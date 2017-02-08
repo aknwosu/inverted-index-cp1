@@ -38,12 +38,6 @@ describe('Populate Index', () => {
   () => {
     expect(invertedIndexTest.getIndex('books.json')).toBeDefined();
   });
-
-  it('should map the string keys to the correct objects in the JSON array',
-  () => {
-    expect(invertedIndexTest.getIndex()['books.json']
-    .of).toEqual({ 0: true, 1: true });
-  });
 });
 
 describe('Search index', () => {
