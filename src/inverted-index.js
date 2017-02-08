@@ -59,7 +59,7 @@ class InvertedIndexClass {
   /**
    * Search Index
    * 
-   * Searches through the indexes for the specified search terms
+   * Searches through the indexes for the search terms
    * 
    * @param {string} filename
    * @param{string} terms
