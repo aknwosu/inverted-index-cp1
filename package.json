@@ -36,7 +36,7 @@
   },
   "scripts": {
     "start": "gulp serveApp",
-    "test": "karma start karma.conf.js --single-run"
+    "test": "gulp scripts; karma start karma.conf.js --single-run"
   },
   "repository": {
     "type": "git",
